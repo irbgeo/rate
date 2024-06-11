@@ -1,0 +1,4 @@
+CREATE TABLE tokens (
+    id SERIAL PRIMARY KEY,
+    token VARCHAR(100) NOT NULL
+);

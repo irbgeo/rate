@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: rate
+      POSTGRES_PASSWORD: rate
+      POSTGRES_DB: rate
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./migration/rate-table-up.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  rateapi:
+    build:
+      context: ./rateapi
+      dockerfile: Dockerfile
+    container_name: rateAPI
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
