@@ -1,0 +1,31 @@
+info:
+  contact: {}
+paths:
+  /rate:
+    get:
+      consumes:
+      - application/json
+      description: Returns the exchange rate from tokenIn to tokenOut, which are taken
+        from the request parameters
+      parameters:
+      - description: Source currency
+        in: query
+        name: tokenIn
+        required: true
+        type: string
+      - description: Target currency
+        in: query
+        name: tokenOut
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful response with the exchange rate
+          schema:
+            type: string
+      summary: Get exchange rate
+      tags:
+      - rate
+swagger: "2.0"
